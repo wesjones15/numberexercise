@@ -2,6 +2,10 @@
 # convert number into array
 # convert each number into 3 possible letters
 # find words from the letters
+import itertools
+
+wordFile = open('words.txt', 'r')
+lines = wordFile.read().split()
 
 def sentence_maker(phoneNumber):
     numberList = [int(d) for d in str(phoneNumber)]
@@ -10,24 +14,19 @@ def sentence_maker(phoneNumber):
         numberList[i] = letterList[int(numberList[i])]
     numberList = filter(None, numberList)
 
-
-
-    # convList = []
-    # for i in range(len(numberList)): # length of num / 2
-    #     # convList.append(numberList[i][])
-    #     for j in range(len(numberList[i])): # length of lett / 3,3
-    #         # convList.append(numberList[i][j])
-    #
-    #         for k in range(i+1,len(numberList)):
-    #             convList.append(numberList[i][j])
-    #             for l in range(len(numberList[i])):
-    #                 convList.append(numberList[k][l])
-    #
-    #                 print convList
-    #                 convList = []
-            # k += 1
-            # if k >= len(numberList): k = i
-                # convList.append(numberList[k][j])
-
-
-    return numberList
+    convList = []
+    for j in itertools.product(*numberList):
+        strWord = ''
+        for k in range(len(j)):
+            strWord += j[k]
+        convList.append(strWord)
+    wordList = []
+    actualWordList = []
+    for l in range(len(convList)):
+        for m in range(len(lines)):
+            if lines[m] in convList[l] and len(lines[m]) > 1:
+                wordList.append(convList[l])
+                actualWordList.append(lines[m])
+    # return convList
+    # return wordList
+    return set(actualWordList)
