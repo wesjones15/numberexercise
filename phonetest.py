@@ -1,5 +1,5 @@
 import unittest
-from numbers import sentence_maker
+from phonenumbers import sentence_maker
 
 # i can have this return all letter combos, all letter combos containing real words, or just the words contained in the combos
 
