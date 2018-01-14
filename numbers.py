@@ -27,6 +27,8 @@ def sentence_maker(phoneNumber):
             if lines[m] in convList[l] and len(lines[m]) > 1:
                 wordList.append(convList[l])
                 actualWordList.append(lines[m])
+
+
     # return convList
     # return wordList
-    return set(actualWordList)
+    return list(set(actualWordList))
